@@ -1,0 +1,338 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Add Incomes | Dashboard</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+
+    <!-- ================== BEGIN BASE CSS STYLE ================== -->
+    <link href="~/assets/css/apple/app.min.css" rel="stylesheet" />
+    <link href="~/assets/plugins/ionicons/css/ionicons.min.css" rel="stylesheet" />
+    <!-- ================== END BASE CSS STYLE ================== -->
+    <!-- ================== BEGIN PAGE LEVEL CSS STYLE ================== -->
+
+    <link href="~/assets/plugins/jvectormap-next/jquery-jvectormap.css" rel="stylesheet" />
+    <link href="~/assets/plugins/nvd3/build/nv.d3.css" rel="stylesheet" />
+    <link href="~/assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
+    <!-- ================== END PAGE LEVEL CSS STYLE ================== -->
+    <!-- ================== BEGIN PAGE LEVEL CSS STYLE ================== -->
+    <link href="~/assets/plugins/superbox/superbox.min.css" rel="stylesheet" />
+    <!-- ================== END PAGE LEVEL CSS STYLE ================== -->
+    <!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
+    <link href="~/assets/plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/assets/plugins/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" />
+    <!-- ================== END PAGE LEVEL STYLE ================== -->
+    <!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
+    <link href="~/assets/plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/assets/plugins/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/assets/plugins/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" />
+    <!-- ================== END PAGE LEVEL STYLE ================== -->
+    @RenderSection("HeadSection", false/*required*/)
+    <style>
+        body {
+            background-image: url('/assets/img/gallery/gallery-14.jpg');
+            background-size: cover;
+        }
+        .widget-stats .stats-info h4, .widget.widget-stats .stats-info h4 {
+            font-size: 16px;
+            margin: 5px 0;
+            color: rgb(251, 247, 247);
+        }
+    </style>
+</head>
+<body>
+    <!-- begin #page-loader -->
+    <div id="page-loader" class="fade show">
+        <span class="spinner"></span>
+    </div>
+    <!-- end #page-loader -->
+    <!-- begin #page-container -->
+    <div id="page-container" class="fade page-sidebar-fixed page-header-fixed page-with-wide-sidebar page-with-light-sidebar">
+        <!-- begin #header -->
+        <div id="header" class="header navbar-default">
+            <!-- begin navbar-header -->
+            <div class="navbar-header">
+                <a href="/Dashboard" class="navbar-brand"><span class="navbar-logo"><i class="ion-ios-cloud"></i></span> <b class="mr-1">Add</b> Incomes</a>
+                <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <!-- end navbar-header --><!-- begin header-nav -->
+            <ul class="navbar-nav navbar-right">
+
+                <li class="dropdown navbar-user">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        @if (ViewBag._Pic == null || ViewBag._Pic == "")
+                        {
+                            <img src="../assets/img/user/user-13.jpg" alt="" />
+                        }
+                        else
+                        {
+                            <img src="/Uploads/Slider/@ViewBag._Pic" alt="" />
+                        }
+                        <span class="d-none d-md-inline">@ViewBag._Name</span> <b class="caret"></b>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        @*<a href="javascript:;" class="dropdown-item">Edit Profile</a>
+        <a href="javascript:;" class="dropdown-item"><span class="badge badge-danger pull-right">2</span> Inbox</a>
+        <a href="javascript:;" class="dropdown-item">Calendar</a>*@
+                        @if (ViewBag._Role == "ADMIN")
+                        {
+                        }
+                        else
+                        {
+                            <a href="/Profile/Index" class="dropdown-item">Profile Photo</a>
+                            <a href="/Profile/ChangePassword" class="dropdown-item">Change Password</a>
+                        }
+                        <div class="dropdown-divider"></div>
+                        <a href="/Account/Logout" class="dropdown-item">Log Out</a>
+                    </div>
+                </li>
+            </ul>
+            <!-- end header navigation right -->
+        </div>
+        <!-- end #header -->
+        <!-- begin #sidebar -->
+        <div id="sidebar" class="sidebar">
+            <!-- begin sidebar scrollbar -->
+            <div data-scrollbar="true" data-height="100%">
+                <!-- begin sidebar user -->
+                <ul class="nav">
+                    <li class="nav-profile">
+                        <a href="javascript:;" data-toggle="nav-profile">
+                            <div class="cover with-shadow"></div>
+                            <div class="image">
+                                @if (ViewBag._Pic == null || ViewBag._Pic == "")
+                                {
+                                    <img src="../assets/img/user/user-13.jpg" alt="" />
+                                }
+                                else
+                                {
+                                    <img src="/Uploads/Slider/@ViewBag._Pic" alt="" />
+                                }
+                            </div>
+                            <div class="info">
+                                <b class="caret pull-right"></b>@ViewBag._Name
+                                <small>@ViewBag._Role</small>
+                            </div>
+                        </a>
+                    </li>
+                    @*<li>
+                            <ul class="nav nav-profile">
+                                <li><a href="javascript:;"><i class="fa fa-cog"></i> Settings</a></li>
+                                <li><a href="javascript:;"><i class="fa fa-pencil-alt"></i> Send Feedback</a></li>
+                                <li><a href="javascript:;"><i class="fa fa-question-circle"></i> Helps</a></li>
+                            </ul>
+                        </li>*@
+                </ul>
+                <!-- end sidebar user -->
+                <!-- begin sidebar nav -->
+                <ul class="nav">
+                    <li class="nav-header">Navigation</li>
+
+                    @if (ViewBag._Role == "ADMIN")
+                    {
+                        <li>
+                            <a href="/Dashboard">
+                                <i class="ion-ios-home bg-blue"></i>
+                                <span>Home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/PartyMaster">
+                                <i class="ion-ios-nutrition bg-blue"></i>
+                                <span>Members</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Epin/Index">
+                                <i class="ion-ios-nutrition bg-blue"></i>
+                                <span>Epin</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Levels/Index">
+                                <i class="ion-ios-nutrition bg-blue"></i>
+                                <span>Levels</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/withdrawal/Index">
+                                <i class="ion-ios-nutrition bg-blue"></i>
+                                <span>Withdrawal</span>
+                            </a>
+                        </li>
+
+                    }
+                    else
+                    {
+                        <li>
+                            <a href="/Dashboard">
+                                <i class="ion-ios-home bg-blue"></i>
+                                <span>Home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/TreeView">
+                                <i class="ion-ios-nutrition bg-blue"></i>
+                                <span>Tree View</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Profile/Index">
+                                <i class="ion-ios-nutrition bg-blue"></i>
+                                <span>Profile Photo</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/MyPins/Index">
+                                <i class="ion-ios-nutrition bg-blue"></i>
+                                <span>My Pins</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Levels/Index">
+                                <i class="ion-ios-nutrition bg-blue"></i>
+                                <span>Levels</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/PartyMaster/PersonalDetails">
+                                <i class="ion-ios-nutrition bg-blue"></i>
+                                <span>Personal Details</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/PartyMaster/BankDetails">
+                                <i class="ion-ios-nutrition bg-blue"></i>
+                                <span>Bank Details</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/withdrawal/Index">
+                                <i class="ion-ios-nutrition bg-blue"></i>
+                                <span>Withdrawal</span>
+                            </a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="javascript:;">
+                                <b class="caret"></b>
+                                <i class="ion-ios-archive bg-gradient-blue"></i>
+                                <span>Earnings</span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li><a href="/withdrawal/SingleLegEarning">Single LegEarning</a></li>
+                                <li><a href="/withdrawal/ReferEarning">Refer Earning</a></li>
+                                <li><a href="/withdrawal/RoyaltyEarning">Royalty Earning</a></li>
+                                <li><a href="/withdrawal/LeadershipEarning">Leadership Earning</a></li>
+                                <li><a href="/withdrawal/Index">Video Earning</a></li>
+                                <li><a href="/withdrawal/Index">All Credit Debit</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/Profile/ChangePassword">
+                                <i class="ion-ios-nutrition bg-blue"></i>
+                                <span>Change Password</span>
+                            </a>
+                        </li>
+                    }
+
+                    <!-- begin sidebar minify button -->
+                    <li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="ion-ios-arrow-back"></i> <span>Collapse</span></a></li>
+                    <!-- end sidebar minify button -->
+                </ul>
+                <!-- end sidebar nav -->
+            </div>
+            <!-- end sidebar scrollbar -->
+        </div>
+        <div class="sidebar-bg"></div>
+        <!-- end #sidebar -->
+        <!-- begin #content -->
+        <div id="content" class="content">
+            @RenderBody()
+        </div>
+        <!-- end #content -->
+        <!-- begin scroll to top btn -->
+        <a href="javascript:;" class="btn btn-icon btn-circle btn-primary btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+        <!-- end scroll to top btn -->
+    </div>
+    <!-- end page container -->
+    <!-- ================== BEGIN BASE JS ================== -->
+    <script src="~/assets/js/app.min.js"></script>
+    <script src="~/assets/js/theme/apple.min.js"></script>
+    <!-- ================== END BASE JS ================== -->
+    <!-- ================== BEGIN PAGE LEVEL JS ================== -->
+
+    <script src="~/assets/plugins/d3/d3.min.js"></script>
+    <script src="~/assets/plugins/nvd3/build/nv.d3.min.js"></script>
+    <script src="~/assets/plugins/jvectormap-next/jquery-jvectormap.min.js"></script>
+    <script src="~/assets/plugins/jvectormap-next/jquery-jvectormap-world-mill.js"></script>
+    <script src="~/assets/plugins/apexcharts/dist/apexcharts.min.js"></script>
+    <script src="~/assets/plugins/moment/min/moment.min.js"></script>
+    <script src="~/assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="~/assets/js/demo/dashboard-v3.js"></script>
+    <!-- ================== END PAGE LEVEL JS ================== -->
+    <!-- ================== BEGIN PAGE LEVEL JS ================== -->
+    <script src="~/assets/plugins/superbox/jquery.superbox.min.js"></script>
+    <script src="~/assets/js/demo/gallery-v2.demo.js"></script>
+    <!-- ================== END PAGE LEVEL JS ================== -->
+    <!-- ================== BEGIN PAGE LEVEL JS ================== -->
+
+    <script src="~/assets/plugins/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/assets/plugins/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/assets/plugins/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/assets/plugins/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+    <script src="~/assets/plugins/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/assets/plugins/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+    <script src="~/assets/plugins/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+    <script src="~/assets/plugins/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="~/assets/plugins/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/assets/plugins/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="~/assets/plugins/pdfmake/build/pdfmake.min.js"></script>
+    <script src="~/assets/plugins/pdfmake/build/vfs_fonts.js"></script>
+    <script src="~/assets/plugins/jszip/dist/jszip.min.js"></script>
+    @RenderSection("Scripts", false/*required*/)
+    <script>
+        function GetAjaxData(url, method, datatype, data) {
+            var response;
+            $.ajax({
+                async: false,
+                type: method,
+                url: url,
+                data: data,
+                dataType: datatype,
+                contentType: "application/json",
+                success: function (res) {
+                    response = res;
+                },
+                error: function (err) {
+                    response = err;
+                }
+
+            });
+            return response;
+
+        }
+
+        $(document).ready(function () {
+
+
+
+
+            $('#data-table-default').DataTable({
+                dom: 'Bfrtip',
+                "Length": 50,
+                buttons: [
+                    'copy', 'excel', 'pdf'
+                ]
+            });
+
+        });
+
+    </script>
+</body>
+</html>

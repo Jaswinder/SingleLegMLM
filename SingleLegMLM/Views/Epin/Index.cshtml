@@ -1,0 +1,131 @@
+﻿@model IEnumerable<SingleLegMLM.Models.eTicket>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <!-- begin col-6 -->
+    <div class="col-xl-12">
+        <!-- begin panel -->
+        <div class="panel panel-inverse" data-sortable-id="form-validation-1">
+            <!-- begin panel-heading -->
+            <div class="panel-heading">
+                <h4 class="panel-title">E-Pin List</h4>
+                <div class="panel-heading-btn">
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+
+                </div>
+            </div>
+            <!-- end panel-heading -->
+            <!-- begin panel-body -->
+            <div class="panel-body">
+
+                <p>
+                    @Html.ActionLink("Create Pin", "GenerateEpin",null, new { @class = "btn btn-primary btn-sm" })
+                </p>
+                <table id="data-table-default" class="table table-striped dataTable ">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PinId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.GenDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Nos)
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.ETicket)
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.IsUsed)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.IsCancel)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.EpinNo)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Narration)
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.MemberId)
+                            </th>
+
+                            <th></th>
+                        </tr>
+                        </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PinId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.GenDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nos)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ETicket)
+                                </td>
+
+                                <td>
+                                    @if (item.IsUsed == 1)
+                                    {
+                                        <label class="label label-danger">Pin Used</label>
+                                    }
+                                    else
+                                    {
+                                        <label class="label label-success">Pin Not Used</label>
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.IsCancel == 1)
+                                    {
+                                        <label class="label label-danger">Canceled</label>
+                                    }
+                                    else
+                                    {
+                                        <label class="label label-info">Not Canceled</label>
+                                    }
+                                </td>
+
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EpinNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Narration)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MemberId)
+                                </td>
+
+                                <td>
+                                    @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+            </div>
+        </div>
+    </div>
+

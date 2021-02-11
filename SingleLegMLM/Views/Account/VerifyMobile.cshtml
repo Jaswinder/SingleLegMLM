@@ -1,0 +1,115 @@
+﻿@{
+    Layout = "";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Add Incomes | Login Page</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+
+    <!-- ================== BEGIN BASE CSS STYLE ================== -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="~/assets/css/google/app.min.css" rel="stylesheet" />
+    <!-- ================== END BASE CSS STYLE ================== -->
+</head>
+<body class="pace-top">
+    <!-- begin #page-loader -->
+    <div id="page-loader" class="fade show">
+        <span class="spinner"></span>
+    </div>
+    <!-- end #page-loader -->
+    <!-- begin #page-container -->
+    <div id="page-container" class="fade">
+        <!-- begin login -->
+        <div class="login login-with-news-feed">
+            <!-- begin news-feed -->
+            <div class="news-feed">
+                <div class="news-image" style="background-image: url(../assets/img/login-bg/login-bg-5-thumb.jpg)"></div>
+                <div class="news-caption">
+                    <h4 class="caption-title"><b>Add</b> Incomes</h4>
+
+
+                </div>
+            </div>
+            <!-- end news-feed -->
+            <!-- begin right-content -->
+            <div class="right-content">
+                <!-- begin login-header -->
+                <div class="login-header">
+                    <div class="brand">
+                        <span class="logo">
+                            <span class="text-blue">A</span>
+                            <span class="text-red">D</span>
+                            <span class="text-orange">D</span>
+                            <span class="text-blue">I</span>
+                            <span class="text-green">N</span>
+                            <span class="text-red">C</span>
+                            <span class="text-blue">O</span>
+                            <span class="text-red">M</span>
+                            <span class="text-orange">E</span>
+                            <span class="text-blue">S</span>
+
+                        </span>
+                        <b>Verify</b> Mobile
+                        <small>Your account has been created. You can login to your account Now.</small>
+                        <small class="@ViewBag.DisplayClass">
+                            @ViewBag._DisplayMsg
+                        </small>
+
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-sign-in-alt"></i>
+                    </div>
+                </div>
+                <!-- end login-header -->
+                <!-- begin login-content -->
+                <div class="login-content">
+                    <form action="/Account/VerifyMobile" method="post" class="margin-bottom-0">
+                        <div class="form-group m-b-15">
+                            <input name="memberid" type="hidden" value="@ViewBag.MemberId" />
+                            <input type="text" name="mobile" class="form-control form-control-lg" disabled="disabled" placeholder="Member Id" value="@ViewBag.MemberId" />
+                        </div>
+                        <div class="form-group m-b-15">
+                            <input type="text" name="otp" class="form-control form-control-lg" placeholder="OTP" />
+                        </div>
+                        @*<div class="checkbox checkbox-css m-b-30">
+                                <input type="checkbox" id="remember_me_checkbox" value="" />
+                                <label for="remember_me_checkbox">
+                                    Remember Me
+                                </label>
+                            </div>*@
+                        <div class="login-buttons">
+                            <button type="submit" class="btn btn-primary btn-block btn-lg">Verify</button>
+                        </div>
+                        @*<div class="login-buttons m-t-20">
+                                <button type="submit" name="ResendPassword" class="btn btn-info btn-block btn-sm" value="ResendPassword">Re-Send Password</button>
+                            </div>*@
+                        <div class="m-t-20 m-b-40 p-b-40 text-inverse">
+                             Click <a href="/Account/Index">here</a> to login.
+                        </div>
+                        <hr />
+                        <p class="text-center text-grey-darker mb-0">
+                            &copy; Add Incomes All Right Reserved @DateTime.Now.Year <br />
+                        </p>
+                    </form>
+                </div>
+                <!-- end login-content -->
+            </div>
+            <!-- end right-container -->
+        </div>
+        <!-- end login -->
+        <!-- begin scroll to top btn -->
+        <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+        <!-- end scroll to top btn -->
+    </div>
+    <!-- end page container -->
+    <!-- ================== BEGIN BASE JS ================== -->
+    <script src="~/assets/js/app.min.js"></script>
+    <script src="~/assets/js/theme/google.min.js"></script>
+    <!-- ================== END BASE JS ================== -->
+</body>
+</html>

@@ -1,0 +1,104 @@
+﻿@model IEnumerable<SingleLegMLM.Models.LevelMaster>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <!-- begin col-6 -->
+    <div class="col-xl-12">
+        <!-- begin panel -->
+        <div class="panel panel-inverse" data-sortable-id="form-validation-1">
+            <!-- begin panel-heading -->
+            <div class="panel-heading">
+                <h4 class="panel-title">Levels</h4>
+                <div class="panel-heading-btn">
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+
+                </div>
+            </div>
+            <!-- end panel-heading -->
+            <!-- begin panel-body -->
+            <div class="panel-body">
+
+               
+                <table id="data-table-default" class="table table-striped dataTable ">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.LevelId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.LevelName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Income)
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.ForDays)
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.Direct)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Team)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PerDayIncome)
+                            </th>
+                           
+
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LevelId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LevelName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Income)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ForDays)
+                                </td>
+
+                               
+
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Direct)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Team)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PerDayIncome)
+                                </td>
+
+                                <td>
+                                    @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+

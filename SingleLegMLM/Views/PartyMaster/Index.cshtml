@@ -1,0 +1,96 @@
+﻿@model IEnumerable<SingleLegMLM.Models.PartyMaster>
+
+@{
+    ViewBag.Title = "Index";
+    int index = 1;
+}
+
+<div class="row">
+    <!-- begin col-6 -->
+    <div class="col-xl-12">
+        <!-- begin panel -->
+        <div class="panel panel-inverse" data-sortable-id="form-validation-1">
+            <!-- begin panel-heading -->
+            <div class="panel-heading">
+                <h4 class="panel-title">Members</h4>
+                <div class="panel-heading-btn">
+                    <a href="/PartyMaster/Register" class="btn btn-primary"><i class="fa fa-expand"></i> Add Member</a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+
+                </div>
+            </div>
+            <!-- end panel-heading -->
+            <!-- begin panel-body -->
+            <div class="panel-body">
+
+               
+                <div class="table-responsive">
+                    <table id="data-table-default" class="table table-striped dataTable ">
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Msrno)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.MemberId)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.MemberName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.SponsorId)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@index</td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Msrno)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MemberId)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MemberName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.SponsorId)
+                                    </td>
+                                    <td>
+                                        <div class="btn-group btn-group-sm">
+
+                                            @Html.ActionLink("Details", "PersonalDetails", "PartyMaster", new { id = item.MemberId }, new { @class = "btn btn-info btn-sm" })
+                                            @Html.ActionLink("Bank Details", "BankDetails", "PartyMaster", new { id = item.MemberId }, new { @class = "btn btn-warning btn-sm" })
+                                            @if (item.DeActive == 0)
+                                            {
+                                                @Html.ActionLink("De-Activate", "Deactivate", "PartyMaster", new { id = item.MemberId }, new { @class = "btn btn-danger btn-sm" })
+                                            }
+                                            else
+                                            {
+                                                @Html.ActionLink("Activate", "Activate", "PartyMaster", new { id = item.MemberId }, new { @class = "btn btn-primary btn-sm" })
+                                            }
+                                            @*@if (ViewBag._Role == "Teacher" || ViewBag._Role == "Institute")
+        {
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-primary btn-sm" })
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-danger btn-sm" })
+        }*@
+                                        </div>
+                                    </td>
+                                </tr>
+                                index++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

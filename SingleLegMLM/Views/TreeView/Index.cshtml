@@ -1,0 +1,52 @@
+﻿@model List<SingleLegMLM.Models.UserTreeNode>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/assets/css/treeView.css" rel="stylesheet" />
+<div class="panel panel-inverse" data-sortable-id="form-validation-1">
+    <div class="panel-heading">
+        <h4 class="panel-title">Tree View</h4>
+        <div class="panel-heading-btn">
+            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="main-timeline11">
+                    @foreach (var itm in Model)
+                    {
+
+                        <div class="timeline">
+                            <a href="#" class="timeline-content">
+                                <span class="year">
+                                    @if (itm.Photo == null || itm.Photo == "")
+                                    {
+                                        <img src="../assets/img/user/user-13.jpg" class="img-responsive img-circle" alt="" width="100" height="100" />
+                                    }
+                                    else
+                                    {
+                                        <img src="/Uploads/Slider/@itm.Photo"  class="img-responsive img-circle" alt="" width="100" height="100" />
+                                    }
+
+                                </span>
+                                <div class="inner-content">
+                                    <h3 class="title">@itm.MemberName <br />@itm.MemberId</h3>
+                                    <p class="description">
+
+                                        <span class="username">@itm.SponserName</span>
+                                        <span class="views"></span>
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
